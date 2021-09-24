@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <QImage>
+#include "fstream"
 //#include <string.h>
 
 using namespace std;
@@ -13,6 +14,7 @@ public:
     ImagenRead();//leera la imagen
     void conteo();
     void submuestreo();
+
     void sobremuestreo();
     void matriz();// se crea matiz que recibira los datos del sobremuestro o submues... debe retornar una matriz
     void guardar_matriz();// recibira la matriz y lo guardara en un archivo txt
