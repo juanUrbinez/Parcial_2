@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <QImage>
+#include <fstream>
 //#include <string.h>
 
 using namespace std;
@@ -20,6 +21,7 @@ public:
 private:
     char ***RGB;
     unsigned long long i,fil,col, rojo,verde,azul;
+    QImage im;
 
 
 };

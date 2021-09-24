@@ -8,7 +8,7 @@ int main()
 
     int c=0;
     unsigned long long rojo,verde,azul;
-    string filname = "../Parcial_2/Mapas/Colombia.png"; //cargar la imagen
+    string filname = "../Parcial_2/Mapas/Guayana.png"; //cargar la imagen
                     //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
     QImage im(filname.c_str());
 
@@ -59,7 +59,28 @@ for(int indey=0;indey<im.height();indey+=im.height()/16)
 }
 archivo.close();
 
+    //ImagenRead n;
+    //n.submuestreo();
 
+ /*   string filname = "../Parcial_2/Mapas/Guyana.png";
+    QImage im;
+
+    if(filname.c_str()){
+
+    for(int index=0;index<im.width();++index){
+         //RGB[i][index]=new char[color];
+        for(int indey=0;indey<im.height();++indey){
+            rojo=im.pixelColor(index,indey).red();
+            verde=im.pixelColor(index,indey).green();
+            azul=im.pixelColor(index,indey).blue();
+            //submuestreo();
+
+            cout <<index<<", "<<indey<<" = "<< "rojo: "<<rojo<<'\t'<<"verde: "<<verde<<'\t'<<"azul: "<<azul<<endl;
+            //cout<<"{ "<<rojo<<", "<<verde<<", "<<azul<<" }";
+        }
+    }
+    }
+    else cout<<"no se abrio";*/
 
     return 0;
 }
