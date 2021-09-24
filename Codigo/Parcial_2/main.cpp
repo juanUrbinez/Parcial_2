@@ -8,7 +8,7 @@ int main()
 
     int c=0;
     unsigned long long rojo,verde,azul;
-    string filname = "../Parcial_2/Mapas/Colombia.png"; //cargar la imagen
+    string filname = "../Parcial_2/Mapas/Panama.png"; //cargar la imagen
                     //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
     QImage im(filname.c_str());
 
@@ -55,7 +55,7 @@ for(int indey=0;indey<im.height();indey+=im.height()/16)
 
     }
 
-    archivo<<endl<<"}"<<endl;
+    archivo<<endl<<"},"<<endl;
 }
 archivo.close();
 
