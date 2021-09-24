@@ -24,9 +24,9 @@ altura=im.height()/16;
 ancho=im.width()/16;
 
 //Submuestreo
-for(int indey=0;indey<im.height();indey+=altura-1)
+for(int indey=0;indey<im.height();indey+=altura)
 {
-    for(int index=0;index<im.width();index+=ancho-1)
+    for(int index=0;index<im.width();index+=ancho)
     {
         rojo=im.pixelColor(index,indey).red();
         verde=im.pixelColor(index,indey).green();
@@ -42,10 +42,10 @@ c=0;
 archivo.open(nombreArchivo.c_str(), fstream::out);
 archivo<<"{"<<endl;
 
-for(int indey=0;indey<im.height();indey+=altura-1)
+for(int indey=0;indey<im.height();indey+=altura)
 {
     archivo<<"{"<<endl;
-    for(int index=0;index<im.width();index+=ancho-1)
+    for(int index=0;index<im.width();index+=ancho)
     {
         rojo=im.pixelColor(index,indey).red();
         verde=im.pixelColor(index,indey).green();
