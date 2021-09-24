@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
 
-    /*int c=0; int altura,ancho,AlturaInicial,AnchoInicial;
+    int c=0; int altura,ancho,AlturaInicial,AnchoInicial;
     unsigned long long rojo,verde,azul;
     string filname = "../Parcial_2/Mapas/Colombia.png"; //cargar la imagen
                     //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
@@ -64,9 +64,13 @@ for(int indey=im.height()/16;indey<AlturaInicial;indey+=altura)
     archivo<<endl<<"},"<<endl;
 }
 archivo.close();
-*/
+
+if(im.height()<16)
+
+
 ImagenRead c;
 c.submuestreo();
+
 
     return 0;
 }
