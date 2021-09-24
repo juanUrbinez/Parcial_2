@@ -5,9 +5,9 @@ using namespace std;
 int main()
 {
 
-    int c=0; int altura,ancho;
+    /*int c=0; int altura,ancho,AlturaInicial,AnchoInicial;
     unsigned long long rojo,verde,azul;
-    string filname = "../Parcial_2/Mapas/Panama.png"; //cargar la imagen
+    string filname = "../Parcial_2/Mapas/Colombia.png"; //cargar la imagen
                     //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
     QImage im(filname.c_str());
 
@@ -20,13 +20,15 @@ if(im.height()%16!=0)
 {
 
 }
+AlturaInicial=im.height();
+AnchoInicial=im.width();
 altura=im.height()/16;
 ancho=im.width()/16;
 
 //Submuestreo
-for(int indey=0;indey<im.height();indey+=altura)
+for(int indey=16;indey<AlturaInicial;indey+=altura)
 {
-    for(int index=0;index<im.width();index+=ancho)
+    for(int index=16;index<AnchoInicial;index+=ancho)
     {
         rojo=im.pixelColor(index,indey).red();
         verde=im.pixelColor(index,indey).green();
@@ -42,10 +44,10 @@ c=0;
 archivo.open(nombreArchivo.c_str(), fstream::out);
 archivo<<"{"<<endl;
 
-for(int indey=0;indey<im.height();indey+=altura)
+for(int indey=im.height()/16;indey<AlturaInicial;indey+=altura)
 {
     archivo<<"{"<<endl;
-    for(int index=0;index<im.width();index+=ancho)
+    for(int index=im.width()/16;index<AnchoInicial;index+=ancho)
     {
         rojo=im.pixelColor(index,indey).red();
         verde=im.pixelColor(index,indey).green();
@@ -62,9 +64,9 @@ for(int indey=0;indey<im.height();indey+=altura)
     archivo<<endl<<"},"<<endl;
 }
 archivo.close();
-
-//ImagenRead c;
-//c.submuestreo();
+*/
+ImagenRead c;
+c.submuestreo();
 
     return 0;
 }

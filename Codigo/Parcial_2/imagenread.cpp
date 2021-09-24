@@ -72,42 +72,104 @@ void ImagenRead::submuestreo()
 
 
 //Submuestreo
-for(int indey=0;indey<im.height();indey+=im.height()/16)
-{
-    for(int index=0;index<im.width();index+=im.width()/16)
-    {
-        rojo=im.pixelColor(index,indey).red();
-        verde=im.pixelColor(index,indey).green();
-        azul=im.pixelColor(index,indey).blue();
-        c++;
-        cout <<index<<", "<<indey<<" = "<< "rojo: "<<rojo<<'\t'<<"verde: "<<verde<<'\t'<<"azul: "<<azul<<endl;
-        cout<<c<<endl;
-    }
-}
 string nombreArchivo= "../Parcial_2/Matriz.txt";
 ofstream archivo;
-c=0;
 archivo.open(nombreArchivo.c_str(), fstream::out);
 archivo<<"{"<<endl;
 
-for(int indey=0;indey<im.height();indey+=im.height()/16)
+if (im.width()%16==0&&im.height()%16==0)
 {
-    archivo<<"{"<<endl;
-    for(int index=0;index<im.width();index+=im.width()/16)
+    for(int indey=0;indey<im.height();indey+=im.height()/16)
     {
-        rojo=im.pixelColor(index,indey).red();
-        verde=im.pixelColor(index,indey).green();
-        azul=im.pixelColor(index,indey).blue();
-        archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
-        c=c+1;
-        if(c%16!=0)
+        archivo<<"{"<<endl;
+        for(int index=0;index<im.width();index+=im.width()/16)
         {
-            archivo<<",";
+            rojo=im.pixelColor(index,indey).red();
+            verde=im.pixelColor(index,indey).green();
+            azul=im.pixelColor(index,indey).blue();
+            archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
+            c=c+1;
+            if(c%16!=0)
+            {
+                archivo<<",";
+            }
+
         }
 
+        archivo<<endl<<"},"<<endl;
     }
-
-    archivo<<endl<<"},"<<endl;
 }
+
+else if (im.width()%16==0&&im.height()%16!=0)
+{
+    for(int indey=im.height()/16;indey<im.height();indey+=im.height()/16)
+    {
+        archivo<<"{"<<endl;
+        for(int index=0;index<im.width();index+=im.width()/16)
+        {
+            rojo=im.pixelColor(index,indey).red();
+            verde=im.pixelColor(index,indey).green();
+            azul=im.pixelColor(index,indey).blue();
+            archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
+            c=c+1;
+            if(c%16!=0)
+            {
+                archivo<<",";
+            }
+
+        }
+
+        archivo<<endl<<"},"<<endl;
+    }
+}
+
+else if (im.width()%16!=0&&im.height()%16==0)
+{
+    for(int indey=0;indey<im.height();indey+=im.height()/16)
+    {
+        archivo<<"{"<<endl;
+        for(int index=im.width()/16;index<im.width();index+=im.width()/16)
+        {
+            rojo=im.pixelColor(index,indey).red();
+            verde=im.pixelColor(index,indey).green();
+            azul=im.pixelColor(index,indey).blue();
+            archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
+            c=c+1;
+            if(c%16!=0)
+            {
+                archivo<<",";
+            }
+
+        }
+
+        archivo<<endl<<"},"<<endl;
+    }
+}
+else
+{
+    for(int indey=im.height()/16;indey<im.height();indey+=im.height()/16)
+    {
+        archivo<<"{"<<endl;
+        for(int index=im.width()/16;index<im.width();index+=im.width()/16)
+        {
+            rojo=im.pixelColor(index,indey).red();
+            verde=im.pixelColor(index,indey).green();
+            azul=im.pixelColor(index,indey).blue();
+            archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
+            c=c+1;
+            if(c%16!=0)
+            {
+                archivo<<",";
+            }
+
+        }
+
+        archivo<<endl<<"},"<<endl;
+    }
+}
+
+
+
+
 archivo.close();
 }
