@@ -65,10 +65,6 @@ void ImagenRead::submuestreo()
     QImage im(filname.c_str());
 
 
-    cout<<im.width()<<endl;
-    cout<<im.width()/16<<endl;
-    cout<<im.height()<<endl;
-    cout<<im.height()/16<<endl;
 
 
 //Submuestreo
@@ -172,4 +168,11 @@ else
 
 
 archivo.close();
+}
+
+void ImagenRead::sobremuestreo()
+{
+
+
+
 }
