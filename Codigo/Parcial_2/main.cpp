@@ -7,7 +7,7 @@ int main()
     float A=0;
     int c=0; int AlturaInicial,AnchoInicial;
     unsigned long long rojo,verde,azul;
-    string filname = "../Parcial_2/Mapas/Colombia 4x8.png"; //cargar la imagen
+    string filname = "../Parcial_2/Mapas/Colombia 4x7.png"; //cargar la imagen
                     //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
     QImage im(filname.c_str());
 
@@ -25,7 +25,8 @@ AnchoInicial=im.width();
 
 cout<<im.height()<<endl;
 
-A=(16%im.height());
+A=16%im.height();
+
 
 cout<<A<<endl;
 
@@ -60,7 +61,7 @@ archivo<<"{"<<endl;
 
 
 
-
+int PixelesFaltantes=16%im.height();
 
 
 for(int indey=0;indey<AlturaInicial;indey+=1)
@@ -72,16 +73,45 @@ for(int indey=0;indey<AlturaInicial;indey+=1)
         {
             for(int clockX=0;clockX<16/AnchoInicial;clockX+=1)
             {
+
+                if(A!=0)
+                {
+                    for(int index=0;index<AnchoInicial;index+=1)
+                    {
+                        for(int clockX=0;clockX<16/AnchoInicial;clockX+=1)
+                        {
+                            rojo=im.pixelColor(index,indey).red();
+                            verde=im.pixelColor(index,indey).green();
+                            azul=im.pixelColor(index,indey).blue();
+                            archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
+                            c++;
+                            if(c%16!=0)
+                            {
+                                archivo<<",";
+                            }
+                        }
+
+
+                    }
+                    archivo<<endl<<"},"<<endl;
+
+                    archivo <<"{"<< endl;
+                    c++;
+                    A--;
+                }
                 rojo=im.pixelColor(index,indey).red();
                 verde=im.pixelColor(index,indey).green();
                 azul=im.pixelColor(index,indey).blue();
                 archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
-                c=c+1;
+                c++;
+
+
                 if(c%16!=0)
                 {
                     archivo<<",";
                 }
             }
+
 
         }
         archivo<<endl<<"},"<<endl;
