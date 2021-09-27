@@ -3,68 +3,16 @@
 
 ImagenRead::ImagenRead()
 {
-    //int i;
-    //leer la imagen
 
-    //verificar si abrio correctamente
-
-    // si abrio correctamente:
-
-        //llamar la funcion conteo
-        // con un if, podremos comparar si el dato dado por la funcion conteo es mayor o menor a nuestra matriz 16x16
-            // de ser verdadero, es decir, el dato dado por "conteo" es mayor a nuestra matriz:
-            // realizamos el submuestreo
-            // lo guardamos en forma de matriz con la funcion matriz
-            // el dato de la funcion matriz se guardara en un archivo txt
-
-        //de ser falso, es decir, el dato dado por "conteo" es menor a nuestra matriz:
-            // realizamos el sobremuestreo
-            // lo guardamos en forma de matriz con la funcion matriz
-            // el dato de la funcion matriz se guardara en un archivo txt
-
-    // si no abrio correctamente, indicarle al usuario que el archivo no pudo abrirse
-
-    /*RGB = new char** [3];
-    for(int f=0;f<3;f++){
-        RGB[f]=new char* [16];
-        for(int c=0;c<16;c++){
-            RGB[f][c]= new char;
-        }
-    }*/
-
-    string filname = "C:/Users/Usuario/Documents/UNIVERSIDAD DE ANTIOQUIA/SEMESTRE 2021-1/INFORMATICA II/Parciales";
-    QImage im(filname.c_str());
-
-    RGB=new char** [i];
-    for(i=0;i<3;i++){
-        RGB[i]=new char* [fil];
-        for(fil=0;im.width();fil++){
-            RGB[i][fil]=new char[col];
-            for(col=0;im.height();col++){
-                for(int index=0;index<im.width();++index){
-                    for(int indey=0;indey<im.height();++indey){
-                        rojo=im.pixelColor(index,indey).red();
-                        verde=im.pixelColor(index,indey).green();
-                        azul=im.pixelColor(index,indey).blue();
-                        cout << "rojo: "<<rojo<<'\t'<<"verde: "<<verde<<'\t'<<"azul: "<<azul<<endl;
-
-                    }
-                }
-            }
-        }
-
-    }
 }
 
-void ImagenRead::submuestreo()
+void ImagenRead::submuestreo(string fillname)
 {
     int c=0;
     unsigned long long rojo,verde,azul;
-    string filname = "../Parcial_2/Mapas/Panama.png"; //cargar la imagen
-                    //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
-    QImage im(filname.c_str());
-
-
+    //string filname = "../Parcial_2/Mapas/Panama.png"; //cargar la imagen
+    //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
+    QImage im(fillname.c_str());
 
 
 //Submuestreo
@@ -83,6 +31,7 @@ if (im.width()%16==0&&im.height()%16==0)
             rojo=im.pixelColor(index,indey).red();
             verde=im.pixelColor(index,indey).green();
             azul=im.pixelColor(index,indey).blue();
+            //if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
             archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
             c=c+1;
             if(c%16!=0)
@@ -106,6 +55,7 @@ else if (im.width()%16==0&&im.height()%16!=0)
             rojo=im.pixelColor(index,indey).red();
             verde=im.pixelColor(index,indey).green();
             azul=im.pixelColor(index,indey).blue();
+            //if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
             archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
             c=c+1;
             if(c%16!=0)
@@ -129,6 +79,7 @@ else if (im.width()%16!=0&&im.height()%16==0)
             rojo=im.pixelColor(index,indey).red();
             verde=im.pixelColor(index,indey).green();
             azul=im.pixelColor(index,indey).blue();
+            //if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
             archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
             c=c+1;
             if(c%16!=0)
@@ -141,7 +92,7 @@ else if (im.width()%16!=0&&im.height()%16==0)
         archivo<<endl<<"},"<<endl;
     }
 }
-else
+/*else
 {
     for(int indey=im.height()/16;indey<im.height();indey+=im.height()/16)
     {
@@ -151,6 +102,7 @@ else
             rojo=im.pixelColor(index,indey).red();
             verde=im.pixelColor(index,indey).green();
             azul=im.pixelColor(index,indey).blue();
+            //if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
             archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
             c=c+1;
             if(c%16!=0)
@@ -163,16 +115,143 @@ else
         archivo<<endl<<"},"<<endl;
     }
 }
-
+*/
 
 
 
 archivo.close();
 }
 
-void ImagenRead::sobremuestreo()
+void ImagenRead::sobremuestreo(string fillname)
 {
+    float A=0;
+    int c=0;
+     unsigned long long rojo,verde,azul;
+    //string filname = "../Parcial_2/Mapas/japon_9x9.png"; //cargar la imagen
+                    //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
+    QImage im(fillname.c_str());
 
+
+    string nombreArchivo= "../Parcial_2/Matriz.txt";
+    ofstream archivo;
+    c=0;
+    A=16%im.height();
+    archivo.open(nombreArchivo.c_str(), fstream::out);
+    archivo<<"{"<<endl;
+
+    //pixeles faltantes
+
+
+
+
+    int PixelesFaltantes=16%im.width();
+
+
+
+
+
+    for(int indey=0;indey<im.height();indey+=1)
+    {
+        for(int clockY=0;clockY<16/im.height();clockY+=1)
+        {
+            archivo<<"{"<<endl;
+
+            if(A!=0)
+            {
+                for(int index=0;index<im.width();index+=1)
+                {
+                    for(int clockX=0;clockX<16/im.width();clockX+=1)
+                    {
+                        rojo=im.pixelColor(index,indey).red();
+                        verde=im.pixelColor(index,indey).green();
+                        azul=im.pixelColor(index,indey).blue();
+
+                        if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
+
+                        archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
+                        c++;
+
+
+
+                        if(c%16!=0)
+                        {
+                            archivo<<",";
+                        }
+                    }
+
+                    //agregado
+                    if (PixelesFaltantes!=0)
+                    {
+                        rojo=im.pixelColor(index,indey).red();
+                        verde=im.pixelColor(index,indey).green();
+                        azul=im.pixelColor(index,indey).blue();
+
+                        if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
+
+                        archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"},";
+                        c++;
+                        PixelesFaltantes--;
+                    }
+
+
+
+
+
+                }
+                PixelesFaltantes=16%im.width();
+
+
+                archivo<<endl<<"},"<<endl;
+
+                archivo <<"{"<< endl;
+                A--;
+
+
+            }
+            for(int index=0;index<im.width();index+=1)
+            {
+                for(int clockX=0;clockX<16/im.width();clockX+=1)
+                {
+
+
+                    rojo=im.pixelColor(index,indey).red();
+                    verde=im.pixelColor(index,indey).green();
+                    azul=im.pixelColor(index,indey).blue();
+                    if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
+                    archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
+                    c++;
+
+
+
+                    if(c%16!=0)
+                    {
+                        archivo<<",";
+                    }
+                }
+
+                //agregado
+                if (PixelesFaltantes!=0)
+                {
+                    rojo=im.pixelColor(index,indey).red();
+                    verde=im.pixelColor(index,indey).green();
+                    azul=im.pixelColor(index,indey).blue();
+                    if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
+                    archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"},";
+                    c++;
+                    PixelesFaltantes--;
+                }
+
+
+            }
+
+            PixelesFaltantes=16%im.width();
+            archivo<<endl<<"},"<<endl;
+        }
+
+
+    }
+
+    archivo.close();
 
 
 }
