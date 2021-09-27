@@ -9,6 +9,7 @@ ImagenRead::ImagenRead()
 void ImagenRead::submuestreo(string fillname)
 {
     int c=0;
+    int c2=0;
     unsigned long long rojo,verde,azul;
     //string filname = "../Parcial_2/Mapas/Panama.png"; //cargar la imagen
     //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
@@ -31,19 +32,25 @@ if (im.width()%16==0&&im.height()%16==0)
             rojo=im.pixelColor(index,indey).red();
             verde=im.pixelColor(index,indey).green();
             azul=im.pixelColor(index,indey).blue();
-            //if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
+            if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
             archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
-            c=c+1;
+            c++;
             if(c%16!=0)
             {
                 archivo<<",";
             }
 
         }
-
-        archivo<<endl<<"},"<<endl;
+        c2++;
+        archivo<<endl<<"}"<<endl;
+        if(c2%16!=0)
+        {
+            archivo<<",";
+        }
     }
+
 }
+
 
 else if (im.width()%16==0&&im.height()%16!=0)
 {
@@ -55,7 +62,7 @@ else if (im.width()%16==0&&im.height()%16!=0)
             rojo=im.pixelColor(index,indey).red();
             verde=im.pixelColor(index,indey).green();
             azul=im.pixelColor(index,indey).blue();
-            //if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
+            if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
             archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
             c=c+1;
             if(c%16!=0)
@@ -65,7 +72,12 @@ else if (im.width()%16==0&&im.height()%16!=0)
 
         }
 
-        archivo<<endl<<"},"<<endl;
+        c2++;
+        archivo<<endl<<"}"<<endl;
+        if(c2%16!=0)
+        {
+            archivo<<",";
+        }
     }
 }
 
@@ -79,7 +91,7 @@ else if (im.width()%16!=0&&im.height()%16==0)
             rojo=im.pixelColor(index,indey).red();
             verde=im.pixelColor(index,indey).green();
             azul=im.pixelColor(index,indey).blue();
-            //if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
+            if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
             archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
             c=c+1;
             if(c%16!=0)
@@ -89,10 +101,15 @@ else if (im.width()%16!=0&&im.height()%16==0)
 
         }
 
-        archivo<<endl<<"},"<<endl;
+        c2++;
+        archivo<<endl<<"}"<<endl;
+        if(c2%16!=0)
+        {
+            archivo<<",";
+        }
     }
 }
-/*else
+else
 {
     for(int indey=im.height()/16;indey<im.height();indey+=im.height()/16)
     {
@@ -102,7 +119,7 @@ else if (im.width()%16!=0&&im.height()%16==0)
             rojo=im.pixelColor(index,indey).red();
             verde=im.pixelColor(index,indey).green();
             azul=im.pixelColor(index,indey).blue();
-            //if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
+            if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
             archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
             c=c+1;
             if(c%16!=0)
@@ -112,13 +129,18 @@ else if (im.width()%16!=0&&im.height()%16==0)
 
         }
 
-        archivo<<endl<<"},"<<endl;
+        c2++;
+        archivo<<endl<<"}"<<endl;
+        if(c2%16!=0)
+        {
+            archivo<<",";
+        }
     }
 }
-*/
 
 
 
+archivo<<"};"<<endl;
 archivo.close();
 }
 
@@ -128,7 +150,7 @@ void ImagenRead::sobremuestreo(string fillname)
     int c=0;
      unsigned long long rojo,verde,azul;
     //string filname = "../Parcial_2/Mapas/japon_9x9.png"; //cargar la imagen
-                    //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
+     //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
     QImage im(fillname.c_str());
 
 
