@@ -7,7 +7,7 @@ int main()
     float A=0;
     int c=0; int AlturaInicial,AnchoInicial;
     unsigned long long rojo,verde,azul;
-    string filname = "../Parcial_2/Mapas/Colombia 5x5.jpg"; //cargar la imagen
+    string filname = "../Parcial_2/Mapas/Colombia 5x5.png"; //cargar la imagen
                     //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
     QImage im(filname.c_str());
 
@@ -128,7 +128,6 @@ archivo.close();
 */
 
 //nxn
-
 string nombreArchivo= "../Parcial_2/Matriz.txt";
 ofstream archivo;
 c=0;
@@ -163,6 +162,17 @@ for(int indey=0;indey<AlturaInicial;indey+=1)
                     azul=im.pixelColor(index,indey).blue();
                     archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
                     c++;
+
+                    if (PixelesFaltantes!=0)
+                    {
+                        rojo=im.pixelColor(index,indey).red();
+                        verde=im.pixelColor(index,indey).green();
+                        azul=im.pixelColor(index,indey).blue();
+                        archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
+                        c++;
+
+                    }
+
                     if(c%16!=0)
                     {
                         archivo<<",";
@@ -199,6 +209,10 @@ for(int indey=0;indey<AlturaInicial;indey+=1)
 
 
         }
+
+
+
+
         archivo<<endl<<"},"<<endl;
     }
 }
