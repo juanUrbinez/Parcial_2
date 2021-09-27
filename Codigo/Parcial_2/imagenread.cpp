@@ -148,6 +148,7 @@ void ImagenRead::sobremuestreo(string fillname)
 {
     float A=0;
     int c=0;
+    int c2=0;
      unsigned long long rojo,verde,azul;
     //string filname = "../Parcial_2/Mapas/japon_9x9.png"; //cargar la imagen
      //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
@@ -224,7 +225,7 @@ void ImagenRead::sobremuestreo(string fillname)
 
 
                 archivo<<endl<<"},"<<endl;
-
+                c2++;
                 archivo <<"{"<< endl;
                 A--;
 
@@ -267,11 +268,19 @@ void ImagenRead::sobremuestreo(string fillname)
             }
 
             PixelesFaltantes=16%im.width();
-            archivo<<endl<<"},"<<endl;
+
+            c2++;
+            archivo<<endl<<"}"<<endl;
+            if(c2%16!=0)
+            {
+                archivo<<",";
+            }
         }
 
 
     }
+
+    archivo<<"};"<<endl;
 
     archivo.close();
 
