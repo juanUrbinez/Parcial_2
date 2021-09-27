@@ -7,7 +7,7 @@ int main()
     float A=0;
     int c=0; int AlturaInicial,AnchoInicial;
     unsigned long long rojo,verde,azul;
-    string filname = "../Parcial_2/Mapas/Colombia 8x15.png"; //cargar la imagen
+    string filname = "../Parcial_2/Mapas/Colombia 5x5.jpg"; //cargar la imagen
                     //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
     QImage im(filname.c_str());
 
@@ -50,6 +50,8 @@ for(int indey=0;indey<AlturaInicial;indey+=1)
         //cout<<c<<endl;
     }
 }
+
+/*
 string nombreArchivo= "../Parcial_2/Matriz.txt";
 ofstream archivo;
 c=0;
@@ -64,6 +66,8 @@ archivo<<"{"<<endl;
 int PixelesFaltantes=16%im.height();
 
 //4nx
+
+
 for(int indey=0;indey<AlturaInicial;indey+=1)
 {
     for(int clockY=0;clockY<16/AlturaInicial;clockY+=1)
@@ -121,8 +125,84 @@ for(int indey=0;indey<AlturaInicial;indey+=1)
     }
 }
 archivo.close();
+*/
+
+//nxn
+
+string nombreArchivo= "../Parcial_2/Matriz.txt";
+ofstream archivo;
+c=0;
+archivo.open(nombreArchivo.c_str(), fstream::out);
+archivo<<"{"<<endl;
+
+//pixeles faltantes
 
 
+
+
+int PixelesFaltantes=16%im.width();
+
+
+
+
+
+for(int indey=0;indey<AlturaInicial;indey+=1)
+{
+    for(int clockY=0;clockY<16/AlturaInicial;clockY+=1)
+    {
+        archivo<<"{"<<endl;
+
+        if(A!=0)
+        {
+            for(int index=0;index<AnchoInicial;index+=1)
+            {
+                for(int clockX=0;clockX<16/AnchoInicial;clockX+=1)
+                {
+                    rojo=im.pixelColor(index,indey).red();
+                    verde=im.pixelColor(index,indey).green();
+                    azul=im.pixelColor(index,indey).blue();
+                    archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
+                    c++;
+                    if(c%16!=0)
+                    {
+                        archivo<<",";
+                    }
+                }
+
+
+            }
+            archivo<<endl<<"},"<<endl;
+
+            archivo <<"{"<< endl;
+            A--;
+
+
+        }
+        for(int index=0;index<AnchoInicial;index+=1)
+        {
+            for(int clockX=0;clockX<16/AnchoInicial;clockX+=1)
+            {
+
+
+                rojo=im.pixelColor(index,indey).red();
+                verde=im.pixelColor(index,indey).green();
+                azul=im.pixelColor(index,indey).blue();
+                archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
+                c++;
+
+
+                if(c%16!=0)
+                {
+                    archivo<<",";
+                }
+            }
+
+
+        }
+        archivo<<endl<<"},"<<endl;
+    }
+}
+archivo.close();
 
 //ImagenRead c;
 //c.submuestreo();
