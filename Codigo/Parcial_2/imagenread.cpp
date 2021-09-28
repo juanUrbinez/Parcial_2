@@ -6,14 +6,10 @@ ImagenRead::ImagenRead()
 
 }
 
-
 void ImagenRead::submuestreo(string fillname)
 {
-
     QImage im(fillname.c_str());
 
-
-//Submuestreo
 string nombreArchivo= "../Parcial_2/Matriz.txt";
 ofstream archivo;
 archivo.open(nombreArchivo.c_str(), fstream::out);
@@ -50,9 +46,9 @@ archivo.close();
 
 void ImagenRead::sobremuestreo(string fillname)
 {
+
     float PixelesFaltantesAltura=0;
     QImage im(fillname.c_str());
-
 
     string nombreArchivo= "../Parcial_2/Matriz.txt";
     ofstream archivo;
@@ -156,32 +152,26 @@ void ImagenRead::sobremuestreo(string fillname)
     }
 
     archivo<<"};"<<endl;
-
     archivo.close();
 }
 
-void ImagenRead::prueba(string fillname)
+void ImagenRead::modificador(string fillname)
 {
-    float A=0;
-
-
-    //string filname = "../Parcial_2/Mapas/japon_9x9.png"; //cargar la imagen
-     //retrocede/ingresa a la carpeta/nombre de la imagen o /nombre de la carp. imagen/nom. imagen
+    float PixelesFaltantesAltura=0;
     QImage im(fillname.c_str());
 
 
     string nombreArchivo= "../Parcial_2/Matriz.txt";
     ofstream archivo;
-    A=16%im.height();
+    PixelesFaltantesAltura=16%im.height();
 
-    int PixelesFaltantes=16%im.width();
+    int PixelesFaltantesAncho=16%im.width();
 
     c=0;
-    A=16%im.height();
+    PixelesFaltantesAltura=16%im.height();
     archivo.open(nombreArchivo.c_str(), fstream::out);
     archivo<<"{"<<endl;
 
-    //pixeles faltantes
 
 cout<<im.height()<<endl;
 if (im.height()>16)
@@ -206,7 +196,7 @@ if (im.height()>16)
             }
 
             //agregado
-            if (PixelesFaltantes!=0)
+            if (PixelesFaltantesAncho!=0)
             {
                 rojo=im.pixelColor(index,indey).red();
                 verde=im.pixelColor(index,indey).green();
@@ -214,11 +204,11 @@ if (im.height()>16)
                 if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
                 archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"},";
                 c++;
-                PixelesFaltantes--;
+                PixelesFaltantesAncho--;
             }
         }
 
-        PixelesFaltantes=16%im.width();
+        PixelesFaltantesAncho=16%im.width();
 
         c2++;
         archivo<<endl<<"}"<<endl;
@@ -237,7 +227,7 @@ else
         {
             archivo<<"{"<<endl;
 
-            if(A!=0)
+            if(PixelesFaltantesAltura!=0)
             {
                 for(int index=im.width()/16-1;index<im.width();index+=im.width()/16)
                 {
@@ -253,13 +243,13 @@ else
                     }
 
                 }
-                PixelesFaltantes=16%im.width();
+                PixelesFaltantesAncho=16%im.width();
 
 
                 archivo<<endl<<"},"<<endl;
                 c2++;
                 archivo <<"{"<< endl;
-                A--;
+                PixelesFaltantesAltura--;
             }
             for(int index=im.width()/16-1;index<im.width();index+=im.width()/16)
             {
@@ -288,7 +278,7 @@ else
 
     }
 }
-
+archivo<<"};"<<endl;
 archivo.close();
 
 }
