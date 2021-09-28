@@ -11,17 +11,18 @@ using namespace std;
 class ImagenRead
 {
 public:
-    ImagenRead();//leera la imagen
-    void conteo();
+    ImagenRead();
+
     void submuestreo(string fillname);
     void sobremuestreo(string fillname);
     void prueba(string fillname);
-    void matriz();// se crea matiz que recibira los datos del sobremuestro o submues... debe retornar una matriz
-    void guardar_matriz();// recibira la matriz y lo guardara en un archivo txt
+
 
 private:
     char ***RGB;
-    unsigned long long i,fil,col, rojo,verde,azul;
+    unsigned long long i,j, rojo,verde,azul;
+    int c=0,c2=0;
+    QImage im;
 
 
 };
