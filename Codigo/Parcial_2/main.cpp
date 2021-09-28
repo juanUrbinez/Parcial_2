@@ -11,8 +11,8 @@ ImagenRead z;
 string  p;
 
 cout<<"Escriba la direccion del archivo"<<endl;
-//cin>>p;
-p="../Parcial_2/Mapas/Prueba_16x16.png";
+cin>>p;
+
 
 QImage bandera(p.c_str());
 
@@ -31,7 +31,7 @@ else if(bandera.width()<=16 && bandera.height()<=16)
 }
 else
 {
-    z.sobremuestreo(p);
+    z.prueba(p);
 }
 
     return 0;

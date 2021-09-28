@@ -24,7 +24,7 @@ ofstream archivo;
 archivo.open(nombreArchivo.c_str(), fstream::out);
 archivo<<"{"<<endl;
 
-if (im.width()%16==0&&im.height()%16==0)
+/*if (im.width()%16==0&&im.height()%16==0)
 {
     for(int indey=0;indey<im.height();indey+=im.height()/16)
     {
@@ -54,7 +54,7 @@ if (im.width()%16==0&&im.height()%16==0)
 }
 
 
-else if (im.width()%16==0&&im.height()%16!=0)
+else if (//im.width()%16==0&&im.height()%16!=0)
 {
     for(int indey=im.height()/16;indey<im.height();indey+=im.height()/16)
     {
@@ -83,7 +83,7 @@ else if (im.width()%16==0&&im.height()%16!=0)
     }
 }
 
-else if (im.width()%16!=0&&im.height()%16==0)
+else if (//im.width()%16!=0&&im.height()%16==0)
 {
     for(int indey=0;indey<im.height();indey+=im.height()/16)
     {
@@ -110,13 +110,13 @@ else if (im.width()%16!=0&&im.height()%16==0)
             archivo<<",";
         }
     }
-}
-else
+}*/
+//else
 {
-    for(int indey=im.height()/16;indey<im.height();indey+=im.height()/16)
+    for(int indey=im.height()/16-1;indey<im.height();indey+=im.height()/16)
     {
         archivo<<"{"<<endl;
-        for(int index=im.width()/16;index<im.width();index+=im.width()/16)
+        for(int index=im.width()/16-1;index<im.width();index+=im.width()/16)
         {
             rojo=im.pixelColor(index,indey).red();
             verde=im.pixelColor(index,indey).green();
@@ -170,9 +170,6 @@ void ImagenRead::sobremuestreo(string fillname)
 
 
     int PixelesFaltantes=16%im.width();
-
-
-
 
 
     for(int indey=0;indey<im.height();indey+=1)
@@ -302,6 +299,16 @@ void ImagenRead::prueba(string fillname)
 
     string nombreArchivo= "../Parcial_2/Matriz.txt";
     ofstream archivo;
+    A=16%im.height();
+
+
+
+    //pixeles faltantes
+
+    int PixelesFaltantes=16%im.width();
+
+
+
     c=0;
     A=16%im.height();
     archivo.open(nombreArchivo.c_str(), fstream::out);
@@ -309,15 +316,57 @@ void ImagenRead::prueba(string fillname)
 
     //pixeles faltantes
 
+cout<<im.height()<<endl;
+if (im.height()>16)
+{
+    for(int indey=im.height()/16-1;indey<im.height();indey+=im.height()/16)
+    {
+        archivo<<"{"<<endl;
+        for(int index=0;index<im.width();index+=1)
+        {
+            for(int clockX=0;clockX<16/im.width();clockX+=1)
+            {
+                rojo=im.pixelColor(index,indey).red();
+                verde=im.pixelColor(index,indey).green();
+                azul=im.pixelColor(index,indey).blue();
+                if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
+                archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
+                c++;
+                if(c%16!=0)
+                {
+                    archivo<<",";
+                }
+            }
+
+            //agregado
+            if (PixelesFaltantes!=0)
+            {
+                rojo=im.pixelColor(index,indey).red();
+                verde=im.pixelColor(index,indey).green();
+                azul=im.pixelColor(index,indey).blue();
+                if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
+                archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"},";
+                c++;
+                PixelesFaltantes--;
+            }
 
 
+        }
 
-    int PixelesFaltantes=16%im.width();
+        PixelesFaltantes=16%im.width();
 
+        c2++;
+        archivo<<endl<<"}"<<endl;
+        if(c2%16!=0)
+        {
+            archivo<<",";
+        }
+    }
 
+}
 
-
-
+else
+{
     for(int indey=0;indey<im.height();indey+=1)
     {
         for(int clockY=0;clockY<16/im.height();clockY+=1)
@@ -326,44 +375,18 @@ void ImagenRead::prueba(string fillname)
 
             if(A!=0)
             {
-                for(int index=0;index<im.width();index+=1)
+                for(int index=im.width()/16-1;index<im.width();index+=im.width()/16)
                 {
-                    for(int clockX=0;clockX<16/im.width();clockX+=1)
+                    rojo=im.pixelColor(index,indey).red();
+                    verde=im.pixelColor(index,indey).green();
+                    azul=im.pixelColor(index,indey).blue();
+                    if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
+                    archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
+                    c=c+1;
+                    if(c%16!=0)
                     {
-                        rojo=im.pixelColor(index,indey).red();
-                        verde=im.pixelColor(index,indey).green();
-                        azul=im.pixelColor(index,indey).blue();
-
-                        if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
-
-                        archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
-                        c++;
-
-
-
-                        if(c%16!=0)
-                        {
-                            archivo<<",";
-                        }
+                        archivo<<",";
                     }
-
-                    //agregado
-                    if (PixelesFaltantes!=0)
-                    {
-                        rojo=im.pixelColor(index,indey).red();
-                        verde=im.pixelColor(index,indey).green();
-                        azul=im.pixelColor(index,indey).blue();
-
-                        if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
-
-                        archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"},";
-                        c++;
-                        PixelesFaltantes--;
-                    }
-
-
-
-
 
                 }
                 PixelesFaltantes=16%im.width();
@@ -376,43 +399,22 @@ void ImagenRead::prueba(string fillname)
 
 
             }
-            for(int index=0;index<im.width();index+=1)
+            for(int index=im.width()/16-1;index<im.width();index+=im.width()/16)
             {
-                for(int clockX=0;clockX<16/im.width();clockX+=1)
+                rojo=im.pixelColor(index,indey).red();
+                verde=im.pixelColor(index,indey).green();
+                azul=im.pixelColor(index,indey).blue();
+                if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
+                archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
+                c=c+1;
+                if(c%16!=0)
                 {
-
-
-                    rojo=im.pixelColor(index,indey).red();
-                    verde=im.pixelColor(index,indey).green();
-                    azul=im.pixelColor(index,indey).blue();
-                    if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
-                    archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"}";
-                    c++;
-
-
-
-                    if(c%16!=0)
-                    {
-                        archivo<<",";
-                    }
+                    archivo<<",";
                 }
-
-                //agregado
-                if (PixelesFaltantes!=0)
-                {
-                    rojo=im.pixelColor(index,indey).red();
-                    verde=im.pixelColor(index,indey).green();
-                    azul=im.pixelColor(index,indey).blue();
-                    if(rojo==255 && verde==255 && azul==255){azul=254;}else if(rojo==0 && verde==0 && azul==0){azul=1;}
-                    archivo <<"{"<<rojo<<","<<verde<<","<<azul<<"},";
-                    c++;
-                    PixelesFaltantes--;
-                }
-
 
             }
 
-            PixelesFaltantes=16%im.width();
+            //PixelesFaltantes=16%im.width();
 
             c2++;
             archivo<<endl<<"}"<<endl;
@@ -424,9 +426,10 @@ void ImagenRead::prueba(string fillname)
 
 
     }
+}
 
-    archivo<<"};"<<endl;
 
-    archivo.close();
+archivo.close();
+
 
 }
