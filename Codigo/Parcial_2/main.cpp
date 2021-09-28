@@ -18,10 +18,10 @@ cin>>p;
 direccion+=p;
 
 QImage bandera(direccion.c_str());
-
+//z.mostrar(direccion);
 cout<<bandera.width()<<endl;
 cout<<bandera.height()<<endl;
-
+//z.mostrar("../Parcial_2/Mapas/"+p);
 
 if(bandera.width()>16 && bandera.height()>16)
 {
@@ -31,6 +31,8 @@ if(bandera.width()>16 && bandera.height()>16)
 else if(bandera.width()<=16 && bandera.height()<=16)
 {
     z.sobremuestreo(direccion);
+    //z.mostrar();
+
 }
 else
 {

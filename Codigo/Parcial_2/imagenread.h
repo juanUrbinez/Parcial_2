@@ -4,7 +4,6 @@
 #include <iostream>
 #include <QImage>
 #include "fstream"
-//#include <string.h>
 
 using namespace std;
 
@@ -12,15 +11,13 @@ class ImagenRead
 {
 public:
     ImagenRead();
-
     void submuestreo(string fillname);
     void sobremuestreo(string fillname);
-    void prueba(string fillname);
+    void modificador(string fillname);
 
 
 private:
-    char ***RGB;
-    unsigned long long i,j, rojo,verde,azul;
+    int rojo,verde,azul;
     int c=0,c2=0;
     QImage im;
 
