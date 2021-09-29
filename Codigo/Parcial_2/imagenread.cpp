@@ -10,9 +10,6 @@ void ImagenRead::submuestreo(string fillname)
 {
     QImage im(fillname.c_str());
 
-    string nombreArchivo= "../Parcial_2/Matriz.txt";
-    ofstream archivo;
-
     archivo.open(nombreArchivo.c_str(), fstream::out);
     archivo<<"{"<<endl;
 
@@ -54,8 +51,6 @@ void ImagenRead::sobremuestreo(string fillname)
     int PixelesFaltantesAncho=16%im.width();
 
 
-    string nombreArchivo= "../Parcial_2/Matriz.txt";
-    ofstream archivo;
 
     archivo.open(nombreArchivo.c_str(), fstream::out);
     archivo<<"{"<<endl;
@@ -163,11 +158,7 @@ void ImagenRead::modificador(string fillname)
     int PixelesFaltantesAncho=16%im.width();
     int PixelesFaltantesAltura=16%im.height();
 
-    string nombreArchivo= "../Parcial_2/Matriz.txt";
-    ofstream archivo;
 
-
-    c=0;
     archivo.open(nombreArchivo.c_str(), fstream::out);
     archivo<<"{"<<endl;
 

@@ -19,8 +19,8 @@ public:
 private:
     int rojo,verde,azul;
     int c=0,c2=0;
-    QImage im;
-
+    string nombreArchivo= "../Parcial_2/Matriz.txt";
+    ofstream archivo;
 
 };
 
